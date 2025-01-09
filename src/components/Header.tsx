@@ -11,7 +11,9 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-primary text-white p-4 flex justify-between items-center">
-      <div className="text-lg font-bold">WeatherApp</div>
+      <Link to="/">
+        <h1 className="text-2xl font-bold cursor-pointer">WeatherApp</h1>
+      </Link>
       <nav className="hidden md:flex space-x-4">
         <Link to="/about">Acerca de</Link>
         <Link to="/manual">Manual</Link>

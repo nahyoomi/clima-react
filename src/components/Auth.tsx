@@ -1,12 +1,13 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { FaUser } from 'react-icons/fa';
+import Spinner from './Spinner';
 
 const Auth: React.FC = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
-
+  console.log(user, 'user');
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return <Spinner />;
   }
 
   return (
