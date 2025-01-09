@@ -1,12 +1,19 @@
-import { create } from 'zustand';
+import {create} from 'zustand';
+
+interface WeatherData {
+  name: string;
+  weather: { description: string; icon: string }[];
+  main: { temp: number };
+}
 
 interface WeatherState {
   city: string;
   setCity: (city: string) => void;
-  weatherData: any;
-  setWeatherData: (data: any) => void;
+  weatherData: WeatherData | null;
+  setWeatherData: (data: WeatherData) => void;
   favorites: string[];
   addFavorite: (city: string) => void;
+  removeFavorite: (city: string) => void;
 }
 
 const useStore = create<WeatherState>((set) => ({
@@ -18,6 +25,10 @@ const useStore = create<WeatherState>((set) => ({
   addFavorite: (city) =>
     set((state) => ({
       favorites: state.favorites.includes(city) ? state.favorites : [...state.favorites, city],
+    })),
+  removeFavorite: (city) =>
+    set((state) => ({
+      favorites: state.favorites.filter((fav) => fav !== city),
     })),
 }));
 

@@ -1,17 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Auth0ProviderWithHistory from './Auth0ProviderWithHistory';
 
-ReactDOM.render(
+const container = document.getElementById('root');
+
+if (!container) {
+  throw new Error('El elemento root no existe');
+}
+
+const root = ReactDOM.createRoot(container);
+
+root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
-      <ToastContainer />
+      <Auth0ProviderWithHistory>
+        <App />
+        <ToastContainer />
+      </Auth0ProviderWithHistory>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

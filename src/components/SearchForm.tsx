@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useStore from '../store/useStore';
 import { toast } from 'react-toastify';
 import { FaSearch } from 'react-icons/fa';
+import { fetchWeather, WeatherData } from '../services/weatherService';
 
 const SearchForm: React.FC = () => {
   const [input, setInput] = useState('');
@@ -14,23 +15,15 @@ const SearchForm: React.FC = () => {
       return;
     }
     try {
-      const apiKey = 'e5ca1ee66ee41689483117f19cf0bbc3';
-
-      // Obtener los datos del clima usando la Current Weather Data API
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(input)}&appid=${apiKey}&units=metric&lang=es`
-      );
-
-      if (!weatherResponse.ok) {
-        const errorData = await weatherResponse.json();
-        throw new Error(errorData.message || 'Error al obtener los datos del clima');
-      }
-
-      const weatherData = await weatherResponse.json();
+      const weatherData: WeatherData = await fetchWeather(input);
       setCity(weatherData.name);
       setWeatherData(weatherData);
-    } catch (error: any) {
-      toast.error(error.message);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error('Ocurrió un error inesperado.');
+      }
     }
   };
 
@@ -48,10 +41,7 @@ const SearchForm: React.FC = () => {
           }
         }}
       />
-      <button
-        onClick={handleSearch}
-        className="bg-secondary text-white p-2 rounded flex items-center"
-      >
+      <button onClick={handleSearch} className="bg-secondary text-white p-2 rounded flex items-center">
         <FaSearch /> Buscar
       </button>
     </div>

@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-
+import Auth from './components/Auth';
 
 const App: React.FC = () => {
   return (
@@ -12,8 +12,9 @@ const App: React.FC = () => {
       <main className="flex-grow container mx-auto p-4">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
-        </main>
+      </main>
       <Footer />
     </div>
   );
