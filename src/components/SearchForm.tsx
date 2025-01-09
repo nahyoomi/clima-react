@@ -13,17 +13,22 @@ const SearchForm: React.FC = () => {
       toast.error('Por favor, ingresa una ciudad.');
       return;
     }
-    setCity(input);
     try {
-      const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${apiKey}&units=metric&lang=es`
+      const apiKey = 'e5ca1ee66ee41689483117f19cf0bbc3';
+
+      // Obtener los datos del clima usando la Current Weather Data API
+      const weatherResponse = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(input)}&appid=${apiKey}&units=metric&lang=es`
       );
-      if (!response.ok) {
-        throw new Error('Ciudad no encontrada');
+
+      if (!weatherResponse.ok) {
+        const errorData = await weatherResponse.json();
+        throw new Error(errorData.message || 'Error al obtener los datos del clima');
       }
-      const data = await response.json();
-      setWeatherData(data);
+
+      const weatherData = await weatherResponse.json();
+      setCity(weatherData.name);
+      setWeatherData(weatherData);
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -37,6 +42,11 @@ const SearchForm: React.FC = () => {
         placeholder="Ingresa la ciudad"
         value={input}
         onChange={(e) => setInput(e.target.value)}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleSearch();
+          }
+        }}
       />
       <button
         onClick={handleSearch}
