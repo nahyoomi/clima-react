@@ -1,10 +1,15 @@
 import React from 'react';
 import useStore from '../store/useStore';
 import { FaStar } from 'react-icons/fa';
+import useTemperature from '../hooks/useTemperature'; // Importar el custom hook
 
 const WeatherDisplay: React.FC = () => {
   const weatherData = useStore((state) => state.weatherData);
   const addFavorite = useStore((state) => state.addFavorite);
+
+  // Llamar al hook de manera incondicional con un valor por defecto
+  const tempCelsius = weatherData?.main.temp ?? 0;
+  const { temperature, unit, toggleUnit } = useTemperature(tempCelsius);
 
   if (!weatherData) return null;
 
@@ -22,10 +27,16 @@ const WeatherDisplay: React.FC = () => {
           alt="Icono del clima"
         />
         <div>
-          <p className="text-2xl">{weatherData.main.temp}°C</p>
-          <p>{weatherData.weather[0].description}</p>
+          <p className="text-2xl">{temperature.toFixed(1)}°{unit}</p>
+          <p className="capitalize">{weatherData.weather[0].description}</p>
         </div>
       </div>
+      <button
+        onClick={toggleUnit}
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none w-full sm:w-auto"
+      >
+        Cambiar a °{unit === 'C' ? 'F' : 'C'}
+      </button>
     </div>
   );
 };
