@@ -5,8 +5,8 @@ function App() {
 
   return (
     <>
-      <div>
-       Hola Mundo
+      <div >
+       <p className='text-primary'>Hola Mundo</p>
       </div>
     </>
   )
