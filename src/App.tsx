@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Auth from "./components/Auth";
 import Manual from "./pages/Manual";
+import NotFound from "./pages/NotFound";
 
 const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/manual" element={<Manual />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
