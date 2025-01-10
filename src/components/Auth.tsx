@@ -1,4 +1,3 @@
-//TODO: any type in logout function
 import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from "./Spinner";
 

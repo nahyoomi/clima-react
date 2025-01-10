@@ -1,5 +1,3 @@
-//TODO: weatherData is not defined
-
 import React, { useState } from "react";
 import useStore from "../store/useStore";
 import { toast } from "react-toastify";
