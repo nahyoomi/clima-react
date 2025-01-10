@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-primary text-white p-4 flex justify-between items-center">
+    <header className="bg-black text-white p-4 flex justify-between items-center">
       <Link to="/">
         <h1 className="text-2xl font-bold cursor-pointer">WeatherApp</h1>
       </Link>

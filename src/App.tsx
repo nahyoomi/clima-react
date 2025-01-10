@@ -11,7 +11,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow container ">
+      <main className="flex-grow w-full">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/about' element={<About />} />

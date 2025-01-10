@@ -29,21 +29,25 @@ const Favorites: React.FC = () => {
   return (
     <div className="mt-4 w-full max-w-md">
       <h3 className="text-lg font-semibold mb-2">Ciudades Favoritas</h3>
-      <ul className="space-y-2">
-        {favorites.map((city) => (
-          <li key={city} className="flex justify-between items-center">
-            <button
-              onClick={() => handleFetchWeather(city)}
-              className="flex items-center space-x-2 bg-secondary text-white p-2 rounded w-full text-left"
-            >
-              <FaSearch /> {city}
-            </button>
-            <button onClick={() => removeFavorite(city)} className="ml-2 text-red-500">
-              <FaTrash />
-            </button>
-          </li>
-        ))}
-      </ul>
+      {favorites.length === 0 ? (
+        <p className="text-center text-gray-500">Aun no se han agregado favoritos.</p>
+      ) : (
+        <ul className="space-y-2">
+          {favorites.map((city) => (
+            <li key={city} className="flex justify-between items-center">
+              <button
+                onClick={() => handleFetchWeather(city)}
+                className="flex items-center space-x-2 bg-white text-black p-2 rounded w-full text-left"
+              >
+                <FaSearch /> {city}
+              </button>
+              <button onClick={() => removeFavorite(city)} className="ml-2 text-red-500">
+                <FaTrash />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

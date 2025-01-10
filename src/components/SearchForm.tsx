@@ -10,14 +10,15 @@ const SearchForm: React.FC = () => {
   const setWeatherData = useStore((state) => state.setWeatherData);
 
   const handleSearch = async () => {
-    if (!input) {
+    if (!input.trim()) {
       toast.error('Por favor, ingresa una ciudad.');
       return;
     }
     try {
-      const weatherData: WeatherData = await fetchWeather(input);
+      const weatherData: WeatherData = await fetchWeather(input.trim());
       setCity(weatherData.name);
       setWeatherData(weatherData);
+      setInput('');
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message);
@@ -27,23 +28,31 @@ const SearchForm: React.FC = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   return (
-    <div className="flex space-x-2 mb-4">
-      <input
-        type="text"
-        className="border p-2 rounded w-64"
-        placeholder="Ingresa la ciudad"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === 'Enter') {
-            handleSearch();
-          }
-        }}
-      />
-      <button onClick={handleSearch} className="bg-secondary text-white p-2 rounded flex items-center">
-        <FaSearch /> Buscar
-      </button>
+    <div className="flex justify-center my-8 px-4">
+      <div className="relative w-full max-w-2xl">
+        <input
+          type="text"
+          className="w-full text-white pl-4 pr-12 py-3 rounded-full bg-black bg-opacity-30 border border-white  transition duration-200"
+          placeholder="El tiempo en..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          onClick={handleSearch}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-600 focus:outline-none"
+          aria-label="Buscar"
+        >
+          <FaSearch />
+        </button>
+      </div>
     </div>
   );
 };

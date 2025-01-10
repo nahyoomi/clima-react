@@ -3,7 +3,7 @@ import SearchForm from "../components/SearchForm";
 import WeatherDisplay from "../components/WeatherDisplay";
 import Favorites from "../components/Favorites";
 import { useAuth0 } from "@auth0/auth0-react";
-import backgroundImage from "../assets/bg-clouds.jpg";
+import backgroundImage from "../assets/bg_clima.jpg";
 
 const Home: React.FC = () => {
   const { isAuthenticated } = useAuth0();
@@ -16,8 +16,8 @@ const Home: React.FC = () => {
       }}
     >
       <SearchForm />
-      {isAuthenticated && <Favorites />}
       <WeatherDisplay />
+      {isAuthenticated && <Favorites />}
     </div>
   );
 };
