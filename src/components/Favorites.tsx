@@ -1,9 +1,11 @@
-import React from 'react';
-import useStore from '../store/useStore';
-import { toast } from 'react-toastify';
-import { FaSearch, FaTrash } from 'react-icons/fa';
-import { useAuth0 } from '@auth0/auth0-react';
-import { fetchWeather, WeatherData } from '../services/weatherService';
+//TODO : weatherData is not defined
+import React from "react";
+import useStore from "../store/useStore";
+import { toast } from "react-toastify";
+import { FaTrash } from "react-icons/fa";
+import { useAuth0 } from "@auth0/auth0-react";
+import { fetchWeather, WeatherData } from "../services/weatherService";
+import { FaLocationDot } from "react-icons/fa6";
 
 const Favorites: React.FC = () => {
   const { isAuthenticated } = useAuth0();
@@ -27,21 +29,36 @@ const Favorites: React.FC = () => {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="mt-4 w-full max-w-md">
-      <h3 className="text-lg font-semibold mb-2">Ciudades Favoritas</h3>
+    <div className="m-4 w-full max-w-md">
+      <h3 className="text-lg text-center text-white font-semibold mb-2">
+        Ciudades Favoritas
+      </h3>
       {favorites.length === 0 ? (
-        <p className="text-center text-gray-500">Aun no se han agregado favoritos.</p>
+        <p className="text-center text-gray-500">
+          Aun no se han agregado favoritos.
+        </p>
       ) : (
         <ul className="space-y-2">
           {favorites.map((city) => (
-            <li key={city} className="flex justify-between items-center">
+            <li
+              key={city}
+              className="flex justify-between items-center bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg text-black p-2 rounded-md"
+            >
               <button
                 onClick={() => handleFetchWeather(city)}
-                className="flex items-center space-x-2 bg-white text-black p-2 rounded w-full text-left"
+                className="flex items-center space-x-2 text-black p-2 rounded w-full text-left"
               >
-                <FaSearch /> {city}
+                <FaLocationDot /> <p className="font-bold">{city}</p>
               </button>
-              <button onClick={() => removeFavorite(city)} className="ml-2 text-red-500">
+              <button
+                onClick={() => {
+                  removeFavorite(city);
+                  toast.success(
+                    "La ciudad seleccionada ha sido eliminada correctamente"
+                  );
+                }}
+                className="ml-2 text-red-500 transform transition-transform duration-200 hover:scale-125 focus:scale-125"
+              >
                 <FaTrash />
               </button>
             </li>

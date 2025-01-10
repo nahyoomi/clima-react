@@ -42,44 +42,6 @@ interface WeatherData {
   id: number;
   name: string;
   cod: number;
-
-  // Campos adicionales para futuras implementaciones
-  uvi?: number;
-  hourly?: Array<{
-    dt: number;
-    temp: number;
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }[];
-  }>;
-  daily?: Array<{
-    dt: number;
-    temp: {
-      day: number;
-      min: number;
-      max: number;
-      night: number;
-      eve: number;
-      morn: number;
-    };
-    weather: {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }[];
-    uvi: number;
-  }>;
-  alerts?: Array<{
-    sender_name: string;
-    event: string;
-    start: number;
-    end: number;
-    description: string;
-  }>;
 }
 
 
