@@ -1,9 +1,9 @@
 # Clima-react
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#specifications">Specifications</a> •
-  <a href="/">Demo</a> •
+  <a href="#Características">Key Features</a> •
+  <a href="#Tecnologías-Utilizadas">Specifications</a> •
+  <a href="https://weatheapp-react.netlify.app/">Demo</a> •
 </p>
 
 <div align="">
@@ -57,37 +57,6 @@ cd clima-react
 | ------ | ------ |
 | npm install | install all dependencies |
 | npm run dev | run server|
-
-## Estructura del proyecto
-
-```
-src/
-| assets/
-|-- components/
-|   |-- Register/
-|   |   |-- Register.tsx\n
-|   |   |-- Register.css
-|-- contexts/
-|   |-- UserContext/
-|   |   |-- UserContext.tsx
-|-- hooks/
-|   |-- useMediaQuery/
-|   |   |-- useMediaQuery.tsx
-|-- pages/
-|   |-- UserProfile/
-|   |   |-- UserProfile.tsx
-|   |   |-- UserProfile.css
-|   |-- index.js
-|-- routes/
-|   |-- routes.tsx
-|-- utils/
-|   |-- some-util/
-|   |   |-- someUtil.tsx
-|-- services/
-|   |-- some-service/
-|   |   |-- someService.tsx/
-|-- App.tsx
-|-- index.tsx
 ```
 
 ### Recomendaciones Adicionales
