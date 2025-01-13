@@ -89,3 +89,22 @@ src/
 |-- App.tsx
 |-- index.tsx
 ```
+
+### Recomendaciones Adicionales
+
+- **Archivo `.env.example`:**
+  - Considera crear un archivo `.env.example` que contenga los nombres de las variables necesarias sin los valores reales. Esto sirve como plantilla para que otros desarrolladores sepan qué variables deben definir.
+
+    ```env
+    VITE_AUTH0_DOMAIN=tu-dominio.auth0.com
+    VITE_AUTH0_CLIENT_ID=tu-client-id
+    VITE_OPENWEATHER_API_KEY=tu-api-key
+    ```
+
+- **Agregar [.env](http://_vscodecontentref_/7) al [.gitignore](http://_vscodecontentref_/8):**
+  - Asegúrate de que tu archivo [.gitignore](http://_vscodecontentref_/9) incluya [.env](http://_vscodecontentref_/10) para evitar que se suba accidentalmente al repositorio.
+
+    ```gitignore
+    # Archivos de entorno
+    .env
+    ```

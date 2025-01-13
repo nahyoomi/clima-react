@@ -4,7 +4,6 @@ import Spinner from "./Spinner";
 const Auth: React.FC = () => {
   const { loginWithRedirect, logout, user, isAuthenticated, isLoading } =
     useAuth0();
-  console.log(user, "user");
   if (isLoading) {
     return <Spinner />;
   }
